@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的个人主页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #409eff;
+            --secondary-color: #f0f2f5;
+            --text-color: #303133;
+            --white: #ffffff;
+        }
+
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* 汉堡菜单（移动端） */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-color);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Banner区 */
+        .banner {
+            background: linear-gradient(135deg, var(--primary-color), #66b1ff);
+            color: var(--white);
+            text-align: center;
+            padding: 5rem 5%;
+        }
+
+        .banner h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .banner p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* 通用板块样式 */
+        .section {
+            padding: 4rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: var(--text-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        /* 关于我板块 */
+        .about-content {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .skills {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-tag {
+            background-color: var(--secondary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* 作品集板块 */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .portfolio-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background-color: var(--secondary-color);
+        }
+
+        .portfolio-card h3 {
+            padding: 1rem;
+            color: var(--text-color);
+        }
+
+        .portfolio-card p {
+            padding: 0 1rem 1rem;
+            color: #606266;
+        }
+
+        /* 联系方式板块 */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-item a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: var(--text-color);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 5%;
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .banner h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="logo">
+            <!-- 替换为你的logo图片路径 -->
+            < img src="logo.png" alt="个人主页Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href=" ">首页</a ></li>
+            <li><a href="#about">关于我</a ></li>
+            <li><a href="#portfolio">作品集</a ></li>
+            <li><a href="#contact">联系方式</a ></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Banner区 -->
+    <section class="banner" id="home">
+        <h1>你好，我是XXX</h1>
+        <p>一名热爱学习、探索技术的学生，专注于前端开发与AI应用</p >
+    </section>
+
+    <!-- 关于我板块 -->
+    <section class="section" id="about">
+        <h2 class="section-title">关于我</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>个人简介</h3>
+                <p>我是一名XX专业的学生，对Web开发、AI工具应用充满兴趣。擅长使用HTML/CSS/JavaScript搭建静态网页，熟悉AI辅助开发流程，喜欢探索新技术，不断提升自己的技能。</p >
+                <div class="skills">
+                    <span class="skill-tag">HTML</span>
+                    <span class="skill-tag">CSS</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">AI工具</span>
+                    <span class="skill-tag">GitHub</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 作品集板块 -->
+    <section class="section" id="portfolio" style="background-color: var(--secondary-color);">
+        <h2 class="section-title">作品集</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-card">
+                <div style="width: 100%; height: 200px; background-color: #e6f2ff;"></div>
+                <h3>个人主页项目</h3>
+                <p>使用AI工具生成的静态个人主页，包含完整的页面结构与响应式设计</p >
+            </div>
+            <div class="portfolio-card">
+                <div style="width: 100%; height: 200px; background-color: #f0f9ff;"></div>
+                <h3>班级主页</h3>
+                <p>为班级打造的信息展示平台，包含班级介绍、成员展示、活动通知等功能</p >
+            </div>
+            <div class="portfolio-card">
+                <div style="width: 100%; height: 200px; background-color: #e6f7ff;"></div>
+                <h3>网页版计算器</h3>
+                <p>使用JavaScript实现的网页版计算器，支持基础四则运算</p >
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系方式板块 -->
+    <section class="section" id="contact">
+        <h2 class="section-title">联系方式</h2>
+        <div class="contact-info">
+            <div class="contact-item">
+                <span>📧</span>
+                <a href="mailto:your-email@example.com">your-email@example.com</a >
+            </div>
+            <div class="contact-item">
+                <span>🐙</span>
+                <a href="https://github.com/your-username" target="_blank">GitHub: your-username</a >
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>© 2025 我的个人主页 | 由AI工具辅助开发</p >
+    </footer>
+
+    <script>
+        // 移动端汉堡菜单交互
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '70px';
+            navLinks.style.right = '5%';
+            navLinks.style.backgroundColor = 'var(--white)';
+            navLinks.style.padding = '1rem';
+            navLinks.style.boxShadow = '0 5px 10px rgba(0,0,0,0.1)';
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
